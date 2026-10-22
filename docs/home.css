@@ -1,0 +1,210 @@
+/* Duck World homepage. Colors come from the logo and banner: sky blue, grass green, duck yellow. */
+:root {
+  --sky: #8fd6ff;
+  --blue: #0a8cf0;
+  --blue-dark: #0071bb;
+  --blue-deep: #00457a;
+  --grass: #00c400;
+  --grass-dark: #009a00;
+  --duck: #ffe21a;
+  --duck-orange: #f47c00;
+  --ink: #0d2236;
+  --paper: #ffffff;
+  --radius: 22px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--sky);
+  color: var(--ink);
+  font: 17px/1.5 "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+}
+
+a { color: var(--blue-dark); }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 24px;
+  background: var(--blue-deep);
+  box-shadow: 0 3px 0 var(--blue-dark);
+}
+.brand img { display: block; height: 48px; width: auto; }
+.topbar nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.topbar nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+.topbar nav a:hover { background: rgba(255, 255, 255, 0.15); }
+.topbar nav a.active { background: rgba(255, 255, 255, 0.2); }
+.topbar nav .nav-play {
+  background: var(--duck);
+  color: var(--ink);
+  box-shadow: 0 3px 0 #c9a800;
+  margin-left: 6px;
+}
+.topbar nav .nav-play:hover { background: #fff04d; }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  text-align: center;
+  background: var(--sky);
+}
+.hero-art {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  margin: 0 auto;
+}
+.big-play {
+  display: inline-block;
+  margin: -58px 0 0;
+  padding: 16px 56px;
+  position: relative;
+  z-index: 2;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffef4d, #ffd400);
+  color: var(--ink);
+  font-size: 26px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 0 #c9a800, 0 16px 28px rgba(0, 0, 0, 0.25);
+  transition: transform 0.08s ease;
+}
+.big-play:hover { filter: brightness(1.05); }
+.big-play:active { transform: translateY(4px); box-shadow: 0 4px 0 #c9a800; }
+.hero-note { margin: 14px 0 28px; color: var(--blue-deep); font-weight: 700; }
+
+/* ---------- main sections ---------- */
+main {
+  background: linear-gradient(var(--grass), var(--grass-dark));
+  padding: 40px 20px 20px;
+}
+
+.intro {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 36px 40px;
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 8px 0 #006a00;
+}
+.intro-text { flex: 1 1 0; }
+.intro h1 { margin: 0 0 12px; font-size: 38px; color: var(--blue-deep); }
+.intro p { margin: 0 0 14px; }
+.intro-duck { flex: 0 0 240px; width: 240px; height: auto; }
+
+.button {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #0095ff, #0072c3);
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  text-decoration: none;
+  box-shadow: 0 5px 0 var(--blue-dark);
+}
+.button:hover { filter: brightness(1.08); }
+
+.features,
+.how {
+  max-width: 1000px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #fff;
+}
+.features h2,
+.how h2 {
+  margin: 0 0 22px;
+  font-size: 34px;
+  text-shadow: 0 3px 0 rgba(0, 60, 0, 0.5);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.card {
+  padding: 24px 22px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #0095ff, #007dd7);
+  box-shadow: 0 7px 0 var(--blue-dark);
+  text-align: left;
+}
+.card h3 { margin: 0 0 8px; font-size: 24px; color: var(--duck); }
+.card p { margin: 0; }
+
+.how { padding-bottom: 10px; }
+.how ol {
+  list-style: none;
+  margin: 0 auto 24px;
+  padding: 0;
+  max-width: 640px;
+  text-align: left;
+}
+.how li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.how li span {
+  flex: 0 0 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--duck);
+  color: var(--ink);
+  font-weight: 800;
+  text-align: center;
+  line-height: 36px;
+}
+.how b { color: var(--duck); }
+.how .button { box-shadow: 0 5px 0 #003a6a; }
+
+/* ---------- footer ---------- */
+footer {
+  padding: 26px 20px 34px;
+  text-align: center;
+  background: var(--grass-dark);
+  color: #e8ffe8;
+  font-size: 14px;
+}
+footer p { margin: 4px 0; }
+footer a { color: #fff; font-weight: 700; }
+
+/* ---------- phones ---------- */
+@media (max-width: 760px) {
+  .topbar { flex-direction: column; padding: 8px 12px; }
+  .topbar nav { justify-content: center; }
+  .topbar nav a { padding: 6px 10px; font-size: 14px; }
+  .big-play { font-size: 20px; padding: 14px 40px; margin-top: -36px; }
+  .intro { flex-direction: column; text-align: center; padding: 26px 22px; }
+  .intro h1 { font-size: 30px; }
+  .intro-duck { flex-basis: auto; width: 180px; }
+  .cards { grid-template-columns: 1fr; }
+  .features h2, .how h2 { font-size: 28px; }
+}
