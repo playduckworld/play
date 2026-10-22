@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play Duck World</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #111;
+      overflow: hidden;
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    }
+    #viewport {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #stage {
+      flex: none;
+      width: 1080px;
+      height: 720px;
+      transform-origin: center center;
+    }
+    #stage embed { display: block; }
+    .back {
+      position: fixed;
+      top: 8px;
+      left: 10px;
+      z-index: 5;
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+      opacity: 0.7;
+    }
+    .back:hover { opacity: 1; }
+  </style>
+
+  <script>
+    // Where the game's multiplayer server lives.
+    // On your own computer (localhost) it uses the server you started with `node server.js`.
+    // When the site is on GitHub Pages, replace the placeholder with your server's address
+    // (it must start with wss:// because the page is https).
+    const SERVER_ADDRESS = "wss://YOUR-SERVER-ADDRESS-HERE";
+
+    const onLocalPC = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    const gameServer = onLocalPC
+      ? (location.protocol === "https:" ? "wss://" : "ws://") + location.host
+      : SERVER_ADDRESS;
+
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+      // The game connects to 127.0.0.1:3000 (see the Socket.connect line in the Flash code).
+      // This line sends that connection to the server above.
+      socketProxy: [{ host: "127.0.0.1", port: 3000, proxyUrl: gameServer }]
+    };
+  </script>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+<body>
+  <a class="back" href="index.html">&larr; Duck World home</a>
+
+  <div id="viewport">
+    <div id="stage">
+      <embed src="duckworld.swf" width="1080" height="720">
+    </div>
+  </div>
+
+  <script>
+    // scale the 1080 x 720 game to fit the window
+    function fit() {
+      const s = Math.min(1, window.innerWidth / 1080, window.innerHeight / 720);
+      document.getElementById("stage").style.transform = "scale(" + s + ")";
+    }
+    window.addEventListener("resize", fit);
+    fit();
+  </script>
+</body>
+</html>
